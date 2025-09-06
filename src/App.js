@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 
-const customDictonary = {
+const customDictionary = {
   teh : "the",
   wrok : "work",
   fot : "for",
@@ -14,11 +14,11 @@ function App() {
   const [suggestion, setSuggestion] = useState("");
 
   const spellCheck = (inputText) => {
-    let words = inputText.split(" ");
+    const words = inputText.split(" ");
     for(const word of words){
       const lowerword = word.toLowerCase();
-      if(customDictonary[lowerword]){
-          return `Did you mean : ${customDictonary[lowerword]} ?`;
+      if(customDictionary[lowerword]){
+          return `Did you mean: ${customDictionary[lowerword]}?`;
       }
     }
     return "";
@@ -28,7 +28,7 @@ function App() {
     if(text.trim() === ""){
       setSuggestion("");
     }else{
-      let foundSuggestion = spellCheck(text);
+      const foundSuggestion = spellCheck(text);
       setSuggestion(foundSuggestion);
     }
   }, [text])
@@ -39,9 +39,12 @@ function App() {
 
   return (
     <div className="App">
-      <h2>Spell check and Auto-Corrections </h2>
-      <textarea value = {text} onChange = {handleChange} placeholder = "Enter text..." row = {10} column = {50}>
-      </textarea>
+      <h2>Spell check and Auto-Correction </h2>
+      <textarea value = {text} 
+      onChange = {handleChange} 
+      placeholder = "Enter text..." 
+      rows = {10} cols = {50}
+       />
       {suggestion && <p>{suggestion}</p>}
     </div>
   );
